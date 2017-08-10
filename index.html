@@ -1,5 +1,12 @@
 ---
 layout: default
-title: test title
+title: DoSun's Blog
 ---
-<p>Hello world!</p>
+<h1>这里是DoSun的个人Blog!</h1>
+<p>主页 --也没什么内容就是了</p>
+<p>文章:</p>
+<ul>
+   {% for post in site.posts %}
+       <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+   {% endfor %}
+</ul>
