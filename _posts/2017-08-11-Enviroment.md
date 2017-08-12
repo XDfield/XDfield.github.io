@@ -1,11 +1,6 @@
 ---
-layout: default
 title: Django开发环境搭建
 category: Django
----
-# {{ page.title }}  
-*{{ page.date }} created by DoSun*  
-
 ---
 ## 使用的软件:  
 * 环境: Windows 10
@@ -66,13 +61,6 @@ category: Django
 
 ---
 ### 到这里所有软件就都安装结束啦~  
-{% if page.previous %}
-上一篇:[{{ page.previous.title }}]({{ page.previous.url }})  
-{% endif %}
-{% if page.next %}
-下一篇:[{{ page.next.title }}]({{ page.next.url }})  
-{% endif %}
-[返回目录]({{ site.baeurl }}/index.html)  
 
 
 [ana]: https://www.continuum.io/downloads "anaconda官网"
@@ -87,6 +75,6 @@ category: Django
 [mysqlclient]: https://pypi.python.org/pypi/mysqlclient "mysqlclient"  
 [mysqldb]: http://mysql-python.sourceforge.net/MySQLdb.html "mysqldb"
 [django]: https://www.djangoproject.com/ "django官网"  
-
+  
 [img_1]: /assets/article_img/2017-08-11/python_test.png "python测试截图"
 [img_2]: /assets/article_img/2017-08-11/env.jpg "进入虚拟环境"

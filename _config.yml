@@ -1,2 +1,15 @@
 encoding: utf-8
+author: "DoSun"
+date_format: '%Y-%m-%d'
+icon: "/assets/images/icon.ico"
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "default"
+      type: "post"
+ 
 # theme: jekyll-theme-midnight
