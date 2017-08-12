@@ -11,9 +11,10 @@ category: Django
 * 环境: Windows 10
 * 语言: python3.5(安装Anaconda)
 * IDE: Pycharm
-* 数据库: MySQL=5.7.19
+* 数据库: MySQL
 * 数据库管理工具: navicat
-* Django=1.11.4  
+* Django(版本为最新的1.11.4)  
+
 ---  
 
 ## 软件安装:  
@@ -76,7 +77,7 @@ category: Django
 
 [ana]: https://www.continuum.io/downloads "anaconda官网"
 [py3env]: https://conda.io/docs/py2or3.html "anaconda创建python环境"  
-[download_env]: https://repo.continuum.io/archive/ "anaconda各个版本下载地址"  
+[download_ana]: https://repo.continuum.io/archive/ "anaconda各个版本下载地址"  
 [pycharm]: https://www.jetbrains.com/pycharm/ "Pycharm官网"  
 [pro_ver]: https://www.jetbrains.com/pycharm/download/#section=windows "Pycharm下载"
 [edu]: null "有时间再写"
