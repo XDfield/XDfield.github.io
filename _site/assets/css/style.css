@@ -687,7 +687,7 @@ dt {
 
 #header nav {
   padding: 0 10px;
-  margin: 13px 20px; }
+  margin: 15px 20px; }
 
 #header nav li {
   font-family: 'OpenSansLight', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -701,8 +701,8 @@ dt {
 
 #header nav li a.jump {
   float: right;
-  width: 54px;
-  height: 34px;
+  width: 48px;
+  height: 30px;
   background-image: url("/assets/images/jump.png"); }
 
 #header nav li a.jump:hover {

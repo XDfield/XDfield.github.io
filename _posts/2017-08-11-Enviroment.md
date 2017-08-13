@@ -33,8 +33,11 @@ category: Django
 
 ### 3.MySQL安装:  
 
-&emsp;&emsp;[MySQL][mysql]是一个常用的数据库,安装也简单,我是win10就直接下载它的[Install][mysql_install]了,安装完会让你创建一个账户并设置密码,这个密码要记住,蛮重要的.  
+&emsp;&emsp;[MySQL][mysql]是一个常用的数据库,安装也简单,我是win10就直接下载它的[Install][mysql_install]了,安装过程中会提示填写mysql服务的名字,最好记一下方便以后使用,然后是为root用户设置密码,这个密码要记住,蛮重要的.  
 >&emsp;&emsp;特别提醒:win10下载的install程序有可能会有个bug(我安装的时候就遇到了),会有底下的按钮显示不了的,估计是系统字体的大小设置导致的,不过问题也不大,调出英文输入,通过X,C,B,N四个键可以进行控制输入.  
+
+&emsp;&emsp;安装程序最后会自动帮你初始化数据库,以后要使用的时候自己打开Mysql服务就行了.(mysql默认的连接地址为'localhost:3306')  
+&emsp;&emsp;最后找到mysql server的安装目录,将他的bin文件夹添加到系统的环境变量PATH中.
 
 ### 4.navicat安装(非必需):  
 

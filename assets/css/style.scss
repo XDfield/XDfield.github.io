@@ -691,7 +691,7 @@
     //  margin: 0 auto;
      padding: 0 10px;
     //  background: blue;
-     margin: 13px 20px; }
+     margin: 15px 20px; }
      #header nav li {
        font-family: 'OpenSansLight', "Helvetica Neue", Helvetica, Arial, sans-serif;
        font-weight: normal;
@@ -724,8 +724,8 @@
          #header nav li a.jump {
          float: right;
         //  margin-left: 0px;
-         width: 54px;
-         height: 34px;
+         width: 48px;
+         height: 30px;
          background-image: url("{{ site.baseurl }}/assets/images/jump.png");
          }
          #header nav li a.jump:hover {

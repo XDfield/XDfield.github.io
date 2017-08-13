@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Django新建项目</title>
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/respond.js"></script>
+    <link rel="shortcut icon" href="/assets/images/icon.ico">
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+  
+      <div id="header">
+        <nav>
+          <li><a class="jump" href="#jump"></a></li>
+          <!--  -->
+        </nav>
+        
+      </div>
+      <span id="jump"></span>
+    <div class="wrapper" >
+
+      <section>
+        <div id="title">
+          <h1></h1>
+          <p></p>
+          <!-- <hr> -->
+          <!-- <span class="credits left">Project maintained by <a href=""></a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span> -->
+        </div>
+
+        
+        <h1>Django新建项目</h1>
+        <p><em>2017-08-13 | Django</em></p>
+        <hr>
+        
+        
+        <p>  上一篇我们搭建完了django的开发环境,现在就可以来新建个django项目来检验下了.</p>
+
+<p>  打开Pycharm(专业版才有各种模板,<a href="#j">后面</a>会介绍没有专业版pycharm的创建方法),依次点击File-&gt;New Project,打开新建项目的页面如图:<br />
+<img src="/assets/article_img/2017-08-13/pycharm_new.png" alt="新建项目" title="Pycharm新建项目" /><br />
+  左侧选择Django,右侧Location选择项目要保存的位置,Interpreter选择原先创建好的虚拟环境.</p>
+
+<blockquote>
+  <p>如果Interpteter里找不到自己的虚拟环境的话可以点击右侧的齿轮,选择”Add Local”,然后去anaconda的安装目录下的envs文件夹里找,里面有创建了的所有虚拟环境,找到装有django的那个,点击进去选择python.exe即可.</p>
+</blockquote>
+
+<p>  然后直接点Create创建项目.可以看到创建好后的项目结构如下:</p>
+<blockquote>
+  <ul>
+    <li>mysite/
+      <ul>
+        <li>templates/</li>
+        <li>mysite/
+          <ul>
+            <li>settings.py</li>
+            <li>urls.py</li>
+            <li>wsgi.py</li>
+            <li>__init__.py</li>
+          </ul>
+        </li>
+        <li>manage.py</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>  现在来运行下服务,点击右上角的绿色三角Run,可以看到控制台的输出如下:</p>
+<blockquote>
+  <p>D:\PyCharm\bin\runnerw.exe D:\Anaconda3\envs\django-learning\python.exe H:/Django/TestSite/manage.py runserver 8000
+Performing system checks…</p>
+
+  <p>System check identified no issues (0 silenced).</p>
+
+  <p>You have 13 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.<br />
+Run ‘python manage.py migrate’ to apply them.<br />
+August 12, 2017 - 22:09:23<br />
+Django version 1.11.4, using settings ‘TestSite.settings’<br />
+Starting development server at http://127.0.0.1:8000/<br />
+Quit the server with CTRL-BREAK.</p>
+</blockquote>
+
+<p>  现在打开浏览器,在地址栏上输入’http://127.0.0.1:8000’或者’http://localhost:8000’,可以看到该项目成功运行:<br />
+<img src="/assets/article_img/2017-08-13/django_run.png" alt="django成功运行" title="django项目成功运行" /></p>
+
+<hr />
+<p>  接下来配置一下mysql数据库,在使用mysql数据库之前需要启动mysql的服务,打开cmd(可能需要管理员权限),输入以下命令:<code class="highlighter-rouge">net start mysql</code>(<em>这里的mysql是你原先填的mysql的服务名</em>),成功的话可以看到’MYSQL 服务已经启动成功’的字样.(关闭服务的命令为<code class="highlighter-rouge">net stop mysql</code>)<br />
+  然后打开navicat,点击连接,创建一个mysql的连接,填写:</p>
+<ul>
+  <li>连接名: 随意</li>
+  <li>主机名: localhost</li>
+  <li>端口: 3306</li>
+  <li>用户名: root</li>
+  <li>密码: 原先设置的密码</li>
+</ul>
+
+<p>  然后点击连接测试看成不成功(成功的话可以看到’连接成功’的提示),接着点’确定’就行了.<br />
+<img src="/assets/article_img/2017-08-13/navicat.png" alt="navicat连接" title="navicat连接测试" /><br />
+  连接到数据库后,可以在右边看到该连接,右键它选择’新建数据库’:</p>
+<ul>
+  <li>数据库名: django_learning(任写)</li>
+  <li>字符集: utf8 – UTF-8 Unicode</li>
+  <li>排序规则: utf8_general_ci</li>
+</ul>
+
+<blockquote>
+  <p>字符集选择utf8可以很好的支持中文,排序规则常用的选择general_ci,要记住这个里面是不区分大小写的,例如’Dog’与’dog’等同,所以不要用这种字段作为表的id,不然请选择utf8_bin</p>
+</blockquote>
+
+<hr />
+<p>  创建完数据库后,就要将该数据库与django项目进行绑定了.打开项目里mysite文件夹下的settings.py文件,找到以下字段:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+</code></pre>
+</div>
+<p>  这里默认的是使用python3自带的sqlite数据库,一个十分轻量级的数据库,如果不是很大的数据,对并发存储要求不高的话用这个也是可以的.现在我们将它改为使用我们创建好的mysql数据库.修改见以下:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_learning',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
+</code></pre>
+</div>
+<ul>
+  <li>ENGINE: 选择mysql数据库</li>
+  <li>NAME: 你创建的数据库名</li>
+  <li>USER与PASSWORD按自己设定的填写(一般都是填root用户)</li>
+  <li>HOST与PORT都是用的默认的</li>
+</ul>
+
+<p>  设置完后我们来检验一下能否正常使用,由于我们在上一篇已经安装了mysqlclient,所以正常来说python可以调用mysql.在该项目目录下打开cmd,输入以下命令: <code class="highlighter-rouge">python manager.py shell</code><br />
+  接着输入以下代码:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>from django.db import connection  
+cursor = connection.cursor()  
+</code></pre>
+</div>
+<p>  如果没有报错那说明数据库使用正常.</p>
+
+<hr />
+<p><span id="j"></span></p>
+<h3 id="最后提一下如果没有专业版pycharm的话如何新建项目">最后提一下如果没有专业版Pycharm的话如何新建项目:</h3>
+<p>  django提供了很方便的创建项目的功能,首先打开cmd,cd到想要存放项目的位置,然后输入以下命令: <code class="highlighter-rouge">django-admin startproject mysite</code> (‘mysite’可以换为任意的项目名)<br />
+  可以看到创建后的项目结构和用Pycharm创建的一致:</p>
+<blockquote>
+  <ul>
+    <li>mysite/
+      <ul>
+        <li>manage.py</li>
+        <li>mysite/
+          <ul>
+            <li>__init__.py</li>
+            <li>settings.py</li>
+            <li>urls.py</li>
+            <li>wsgi.py</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>  然后是不使用pycharm的话如何运行项目呢,很简单:<br />
+  <code class="highlighter-rouge">python manager.py runserver</code></p>
+
+<blockquote>
+  <p>后面也可以带上自定义的参数,例如让其他电脑也可以访问网页(即使用0.0.0.0地址),或者改为自定义端口号, <code class="highlighter-rouge">python manager.py 0.0.0.0 9588</code> 即可在0.0.0.0:9588的地址开启服务.</p>
+</blockquote>
+
+<hr />
+<h3 id="如何新建项目就写到这里了">如何新建项目就写到这里了~</h3>
+
+
+        
+        <br>
+        <br>
+
+        
+        
+        上一篇:<a href="/django/2017/08/11/Enviroment.html">Django开发环境搭建</a>  
+        
+        
+        <br>
+        <a href="/index.html">返回目录</a>
+        
+        
+      </section>
+
+    </div>
+
+    <!--  -->
+  </body>
+</html>

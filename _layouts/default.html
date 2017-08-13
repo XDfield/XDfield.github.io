@@ -55,11 +55,12 @@
 
         {% if page.type=="post" %}
         {% if page.previous %}
-        <p>上一篇:</p><a href="{{ page.previous.url }}">{{ page.previous.title }}</a>  
+        上一篇:<a href="{{ page.previous.url }}">{{ page.previous.title }}</a>  
         {% endif %}
         {% if page.next %}
-        <p>下一篇:</p><a href="{{ page.next.url }}">{{ page.next.title }}</a>  
+        下一篇:<a href="{{ page.next.url }}">{{ page.next.title }}</a>  
         {% endif %}
+        <br>
         <a href="/index.html">返回目录</a>
         {% endif %}
         
