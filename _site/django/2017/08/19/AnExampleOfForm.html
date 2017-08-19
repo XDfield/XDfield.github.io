@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>从一个表单例子引出Django</title>
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/respond.js"></script>
+    <link rel="shortcut icon" href="/assets/images/icon.ico">
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+  
+      <div id="header">
+        <nav>
+          <li><a class="jump" href="#jump"></a></li>
+          <!--  -->
+        </nav>
+        
+      </div>
+      <span id="jump"></span>
+    <div class="wrapper" >
+
+      <section>
+        <div id="title">
+          <h1></h1>
+          <p></p>
+          <!-- <hr> -->
+          <!-- <span class="credits left">Project maintained by <a href=""></a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span> -->
+        </div>
+
+        
+        <h1>从一个表单例子引出Django</h1>
+        <p><em>2017-08-19 | Django</em></p>
+        <hr>
+        
+        
+        
+<p>  这次我们从一个表单的例子引入Django的大致开发过程.其中主要涉及到表单与数据库之间的数据存取.</p>
+
+<hr />
+<h3 id="目录结构">目录结构</h3>
+<p>  上一篇我们实现了Django项目的新建,现在来看看它的目录结构:</p>
+<blockquote>
+  <ul>
+    <li>projectname/ (项目的主目录)
+      <ul>
+        <li>projectname/ (主要配置文件的存放地址)
+          <ul>
+            <li>__init__.py (来将该文件夹视为一个包)</li>
+            <li>setting.py (全局配置)</li>
+            <li>urls.py (Django主要的urls配置入口)</li>
+            <li>wsgi.py (Django启动的wsgi文件,暂时不管)</li>
+          </ul>
+        </li>
+        <li>templates/ (主要的html文件模板)</li>
+        <li>manage.py (启动Django的主要文件)</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>  除了这些文件夹之外,还有一些常用的文件夹需要手动创建:</p>
+<blockquote>
+  <ul>
+    <li>app\ (各种独立出来的app应用)</li>
+    <li>static\ (存放静态文件,即css js 或者主要的图片)</li>
+    <li>log\ (存放运行日志)</li>
+    <li>media\ (一般用来存放用户上传的文件)<br />
+ps: <em>若以后app多了,全部放在项目的根目录会比较乱,可以再创建一个apps文件夹来存放各个app(记得在里面放上一个__init__.py文件)</em></li>
+  </ul>
+</blockquote>
+
+<p>  注意,如果是用Django自带的命令创建的项目,则不会自带templates文件夹,所以即使手动创建了也需要配置一下,static文件夹也是需要进行配置.<br />
+  打开settings.py文件,找到TEMPLATES,为一个list,里面放着一个dic,而其中的’DIRS’段即为自定义模板的保存位置,修改为:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>'DIRS': [os.path.join(BASE_DIR, 'templates')],
+</code></pre>
+</div>
+<blockquote>
+  <p>可见其实’BASE_DIR’是该文件定义好了的项目根目录位置.</p>
+</blockquote>
+
+<p>  然后是static文件夹,在settings.py文件最后补上:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+</code></pre>
+</div>
+<p>  即可指引到根目录下创建好的那个static文件夹.</p>
+
+<hr />
+<h3 id="创建app">创建app</h3>
+<p>  利用Pycharm可以很方便的创建app.依次点击菜单栏上的 Tools-&gt;Run manage.py Task… 然后在打开的窗口下输入<code class="highlighter-rouge">start appname</code>即可创建指定名称的app.</p>
+<blockquote>
+  <p>若是没有使用Pycharm的用户,则可以通过cmd,在manage.py的同目录下,输入: <code class="highlighter-rouge">python manage.py startapp appname</code></p>
+</blockquote>
+
+<p>  这里我们的例子是个表单,就创建一个名为Form的app,创建好后可以看到app的目录结构如下:</p>
+<blockquote>
+  <ul>
+    <li>Form/
+      <ul>
+        <li>migrations/
+          <ul>
+            <li>__init__.py</li>
+          </ul>
+        </li>
+        <li>__init__.py</li>
+        <li>admin.py</li>
+        <li>apps.py</li>
+        <li>models.py</li>
+        <li>tests.py</li>
+        <li>views.py</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>  创建完app后记得在setting.py里注册一下.在INSTALLED_APPS这个list里补上’message’,不然该项目不会识别这个app,不方便后面更新数据库.</p>
+
+<hr />
+<h3 id="创建表单页面">创建表单页面</h3>
+<p>  这里简单编写一个html表单页面,然后简单配置一下css文件检验下效果.新建一个form.html文件,内容如下:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>form test<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">""</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;table</span> <span class="na">align=</span><span class="s">"center"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;caption&gt;</span>Test Form<span class="nt">&lt;/caption&gt;</span>
+        <span class="nt">&lt;tr&gt;</span>
+            <span class="nt">&lt;td&gt;</span>name:<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"name"</span> <span class="nt">/&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;tr&gt;</span>
+            <span class="nt">&lt;td&gt;</span>password:<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"password"</span> <span class="nt">/&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;tr&gt;</span>
+            <span class="nt">&lt;td&gt;</span>email:<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"email"</span> <span class="nt">/&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;tr&gt;</span>
+            <span class="nt">&lt;td</span> <span class="na">colspan=</span><span class="s">"2"</span> <span class="na">align=</span><span class="s">"center"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"Submit"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+<p>  然后是style.css文件(简单的配置下表单):</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>form {
+    border:1px solid #000;
+    border-radius: 5px;
+    margin: 0 auto;
+    max-width: 300px;
+}
+</code></pre>
+</div>
+<p>  然后将form.html文件放到templates文件夹中,style.css文件放到static\css文件夹中(css文件夹新建,用一个文件夹保存同个类型的文件比较方便).然后在form.html中添加对style.css文件的引用,在&lt;head&gt;里添加:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;link rel="stylesheet" href="\static\css\style.css"&gt;
+</code></pre>
+</div>
+<blockquote>
+  <p>记住路径一定是’\‘开头</p>
+</blockquote>
+
+<hr />
+<h3 id="配置该页面">配置该页面</h3>
+<p>  要绑定这个html文件,就需要进urls.py文件里绑定与之对应的url规则.而一个url规则需要对应一个view方法,在对应app里定义.<br />
+  现在新增一个view方法,在message这个app里的views.py里新增以下代码:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>def getForm(request):
+    return render(request, 'form.html')
+</code></pre>
+</div>
+<p>  这就创建好了一个view方法,他的第一个默认参数是一个WSGIRequest对象,即一个对应的网页请求,这里直接返回原先定义的那个html文件,使用render()方法.<br />
+  接下来填写urls.py,新增一个url绑定,在urls.py文件的urlpatterns列表里新增:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>url(r'^form/$', views.getForm, name='getForm'),
+</code></pre>
+</div>
+<blockquote>
+  <p>文件开头要记得import一下message的views文件</p>
+</blockquote>
+
+<p>  url的填写顺序: 1.一段正则表达式用来匹配输入的url(‘^’表示从这里开始,’/$’表示从这里结束);2.对应的view方法;3.可以给该url指定一个名称(可选但最好带上)</p>
+<blockquote>
+  <p>这里新增了url后,原先默认的起始页就404了</p>
+</blockquote>
+
+<p>  现在启动django项目,地址输入 <code class="highlighter-rouge">http://127.0.0.1:8000/form</code> ,正常的话可以看到原先建立的表单页面了.<br />
+<img src="/assets/article_img/2017-08-19/form.png" alt="表单" title="表单页面" /></p>
+<blockquote>
+  <p>可见css文件有正常导入</p>
+</blockquote>
+
+<hr />
+<h3 id="创建model">创建model</h3>
+<p>  既然是表单,就涉及到数据的存取,也就涉及到数据库的操作.在开发环境搭建那一篇文章里装过mysql的驱动,这里就不用装了.<br />
+  有了数据库就得创建model模型,这就涉及到django的orm模型.</p>
+<blockquote>
+  <p>这里提一下一般的数据库操作流程:</p>
+  <div class="highlighter-rouge"><pre class="highlight"><code>def book_list():
+	db = mysqldb.connect(user='', db='', passwd='', host='')
+	cursor = db.cursor()
+	cursor.excute('SELECT name FROM books ORDER BY name')
+	names = [row[0] for row in cursor.fetchall()]
+	db.close()
+</code></pre>
+  </div>
+  <p>即连接数据库-&gt;创建cursor-&gt;执行sql语句-&gt;取回值, 而orm则是将数据库的表结构映射为一个类来操作,以类的方式来完成这些繁琐的工作.</p>
+</blockquote>
+
+<p>  现在来创建对应的model模型,在message的models.py文件里新增以下代码:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>class User(models.Model):
+    name = models.CharField(max_length=10, verbose_name='用户名')
+    password = models.CharField(max_length=50, verbose_name='密码')
+    email = models.EmailField(verbose_name='邮箱')
+
+    class Meta:
+        verbose_name = '用户信息'
+</code></pre>
+</div>
+<p>  这里新增了一个User类用来定义与操作对应的数据,按照原先定义的表单的内容这里定义了name, password, email三个变量,其中按他们应有的类型选用了不同的模型字段(Field).<br />
+  (<a href="https://docs.djangoproject.com/en/1.11/ref/models/fields/" title="Field type">这里</a>是官方各种字段(Field)类型的文档.)</p>
+<blockquote>
+  <p>CharField顾名思义为字符串字段,name与password都属于这一类,注意该字段有个必填的属性为max_length,而verbose_name为对该变量的注释;而email也有专门的字段EmailField.定义完一个model类后要定义一个Meta信息,其中为对该类型(User)的注释定义</p>
+</blockquote>
+
+<p>  现在运行命令 <code class="highlighter-rouge">makemigrations message</code> (在Tools-&gt;Run manage.py Task…里)生成数据库更新记录,如果没问题就再输入 <code class="highlighter-rouge">migrate message</code> .可以用navicat看表是否创建成功.</p>
+<blockquote>
+  <p>生成表的默认命名结构为: appname_modelname (全为小写)</p>
+</blockquote>
+
+<hr />
+<h3 id="数据表的增删改查">数据表的增删改查</h3>
+<p>  最后让表单可以与数据库进行数据存取.在views.py中导入models.py文件,然后就可以在view方法中对该数据表进行实例化.</p>
+<blockquote>
+  <p>例如:<br />
+<code class="highlighter-rouge">all = User.objects.all()</code><br />
+这里的’objects’为一个默认的数据表管理器,它的’all()’方法会返回全部的数据,且可迭代.得到的实例,可以使用类似item.name的方法来取得数据.<br />
+‘objects’还有个方法’filter()’可用来筛选数据.<br />
+使用方法: <code class="highlighter-rouge">pp = User.objects.filter(name='pp')</code><br />
+而存储数据可以通过创建一个User对象并赋上各个值,最后调用’save()’方法进行保存.删除数据则通过’delete()’方法.</p>
+</blockquote>
+
+<p>  现在要让html页面可以提交数据,必须在html文件里写上 <code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">csrf_token</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code> ,不然django不会让他提交,这是一种安全机制.<br />
+  而表单的 <code class="highlighter-rouge">action</code> 属性则需要填上要提交的url,这里还是form.html自己,而先前我们给它定义了一个名称为 ‘getForm’ ,所以这里我们可以填为:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;form action="{% url 'getForm' %}" method="post"&gt;
+</code></pre>
+</div>
+<blockquote>
+  <p>这样以后我们修改form的url规则的话,就不用连同html文件内部一起修改了.</p>
+</blockquote>
+
+<p>  现在我们修改下getForm这个view方法,实现提交后数据可以保存到数据库:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>def getForm(request):
+
+    if request.method == 'POST':
+        name = request.POST.get('name', '')
+        password = request.POST.get('password', '')
+        email = request.POST.get('email', '')
+        user = User()
+        user.name = name
+        user.password = password
+        user.email = email
+        user.save()
+
+    return render(request, 'test.html)
+</code></pre>
+</div>
+<blockquote>
+  <p>这里用 <code class="highlighter-rouge">request.method</code> 来判断进来的是post请求还是get请求(默认为get请求,当表单提交的时候是post请求),post时该request对象带有一个POST属性,此为一个dict,包含着填入的数据.用相应的get方法取得数据并赋值给新建的User对象并save一下就行了.<br />
+可以试试填入数据并提交然后用navicat来检查是否已经保存进数据库.</p>
+</blockquote>
+
+<hr />
+<h3 id="这个表单的例子就写到这里了">这个表单的例子就写到这里了~</h3>
+
+
+        
+        <br>
+        <br>
+
+        
+        
+        上一篇:<a href="/django/2017/08/13/CreateProject.html">Django新建项目</a>  
+        
+        
+        <br>
+        <a href="/index.html">返回目录</a>
+        
+        
+      </section>
+
+    </div>
+
+    <!--  -->
+  </body>
+</html>

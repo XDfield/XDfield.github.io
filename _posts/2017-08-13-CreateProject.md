@@ -82,13 +82,15 @@ DATABASES = {
 * USER与PASSWORD按自己设定的填写(一般都是填root用户)
 * HOST与PORT都是用的默认的  
 
-&emsp;&emsp;设置完后我们来检验一下能否正常使用,由于我们在上一篇已经安装了mysqlclient,所以正常来说python可以调用mysql.在该项目目录下打开cmd,输入以下命令: `python manager.py shell`  
+&emsp;&emsp;设置完后我们来检验一下能否正常使用,由于我们在上一篇已经安装了mysqlclient,所以正常来说python可以调用mysql.在该项目目录下打开cmd,输入以下命令: `python manage.py shell`  
 &emsp;&emsp;接着输入以下代码:  
 ```
 from django.db import connection  
 cursor = connection.cursor()  
 ```  
 &emsp;&emsp;如果没有报错那说明数据库使用正常.  
+
+&emsp;&emsp;最后初始化一下默认的数据库表.依次点击Pycharm菜单栏上的Tools->Run manage.py Task...在打开的窗口里输入 `makemigrations` 生成数据库变更记录,然后是 `migrate` 生成对应的数据表,可以用navicat等工具打开数据库查看创建好的表.
 
 ---  
 <span id="j"></span>
@@ -104,9 +106,9 @@ cursor = connection.cursor()
 >     * wsgi.py  
 
 &emsp;&emsp;然后是不使用pycharm的话如何运行项目呢,很简单:  
-&emsp;&emsp;`python manager.py runserver`  
+&emsp;&emsp;`python manage.py runserver`  
 
-> 后面也可以带上自定义的参数,例如让其他电脑也可以访问网页(即使用0.0.0.0地址),或者改为自定义端口号, `python manager.py 0.0.0.0 9588` 即可在0.0.0.0:9588的地址开启服务.  
+> 后面也可以带上自定义的参数,例如让其他电脑也可以访问网页(即使用0.0.0.0地址),或者改为自定义端口号, `python manage.py 0.0.0.0 9588` 即可在0.0.0.0:9588的地址开启服务.  
 
 ---  
 ### 如何新建项目就写到这里了~

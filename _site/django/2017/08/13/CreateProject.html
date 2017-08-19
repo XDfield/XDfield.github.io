@@ -146,13 +146,15 @@ Quit the server with CTRL-BREAK.</p>
   <li>HOST与PORT都是用的默认的</li>
 </ul>
 
-<p>  设置完后我们来检验一下能否正常使用,由于我们在上一篇已经安装了mysqlclient,所以正常来说python可以调用mysql.在该项目目录下打开cmd,输入以下命令: <code class="highlighter-rouge">python manager.py shell</code><br />
+<p>  设置完后我们来检验一下能否正常使用,由于我们在上一篇已经安装了mysqlclient,所以正常来说python可以调用mysql.在该项目目录下打开cmd,输入以下命令: <code class="highlighter-rouge">python manage.py shell</code><br />
   接着输入以下代码:</p>
 <div class="highlighter-rouge"><pre class="highlight"><code>from django.db import connection  
 cursor = connection.cursor()  
 </code></pre>
 </div>
 <p>  如果没有报错那说明数据库使用正常.</p>
+
+<p>  最后初始化一下默认的数据库表.依次点击Pycharm菜单栏上的Tools-&gt;Run manage.py Task…在打开的窗口里输入 <code class="highlighter-rouge">makemigrations</code> 生成数据库变更记录,然后是 <code class="highlighter-rouge">migrate</code> 生成对应的数据表,可以用navicat等工具打开数据库查看创建好的表.</p>
 
 <hr />
 <p><span id="j"></span></p>
@@ -178,10 +180,10 @@ cursor = connection.cursor()
 </blockquote>
 
 <p>  然后是不使用pycharm的话如何运行项目呢,很简单:<br />
-  <code class="highlighter-rouge">python manager.py runserver</code></p>
+  <code class="highlighter-rouge">python manage.py runserver</code></p>
 
 <blockquote>
-  <p>后面也可以带上自定义的参数,例如让其他电脑也可以访问网页(即使用0.0.0.0地址),或者改为自定义端口号, <code class="highlighter-rouge">python manager.py 0.0.0.0 9588</code> 即可在0.0.0.0:9588的地址开启服务.</p>
+  <p>后面也可以带上自定义的参数,例如让其他电脑也可以访问网页(即使用0.0.0.0地址),或者改为自定义端口号, <code class="highlighter-rouge">python manage.py 0.0.0.0 9588</code> 即可在0.0.0.0:9588的地址开启服务.</p>
 </blockquote>
 
 <hr />
@@ -196,6 +198,8 @@ cursor = connection.cursor()
         
         上一篇:<a href="/django/2017/08/11/Enviroment.html">Django开发环境搭建</a>  
         
+        
+        下一篇:<a href="/django/2017/08/19/AnExampleOfForm.html">从一个表单例子引出Django</a>  
         
         <br>
         <a href="/index.html">返回目录</a>
