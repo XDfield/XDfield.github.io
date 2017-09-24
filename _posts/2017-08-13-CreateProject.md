@@ -116,6 +116,6 @@ cursor = connection.cursor()
 
 
 
-[img_1]: /assets/article_img/2017-08-13/pycharm_new.png "Pycharm新建项目"
-[img_2]: /assets/article_img/2017-08-13/django_run.png "django项目成功运行"  
-[img_3]: /assets/article_img/2017-08-13/navicat.png "navicat连接测试"
+[img_1]: {{ site.img.link | append: 'pycharm_new.png' }} "Pycharm新建项目"
+[img_2]: {{ site.img.link | append: 'django_run.png' }} "django项目成功运行"  
+[img_3]: {{ site.img.link | append: 'navicat.png' }} "navicat连接测试"

@@ -201,4 +201,4 @@ def getForm(request):
 {% endraw %}
 
 [Field]: https://docs.djangoproject.com/en/1.11/ref/models/fields/ "Field type"  
-[form]: /assets/article_img/2017-08-19/form.png "表单页面"
+[form]: {{ site.img.link | append: 'form.png' }} "表单页面"

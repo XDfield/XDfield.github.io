@@ -80,5 +80,5 @@ img: django.jpg
 [mysqldb]: http://mysql-python.sourceforge.net/MySQLdb.html "mysqldb"
 [django]: https://www.djangoproject.com/ "django官网"  
   
-[img_1]: /assets/article_img/2017-08-11/python_test.png "python测试截图"
-[img_2]: /assets/article_img/2017-08-11/env.jpg "进入虚拟环境"
+[img_1]: {{ site.img.link | append: 'python_test.png' }} "python测试截图"
+[img_2]: {{ site.img.link | append: 'env.jpg' }} "进入虚拟环境"

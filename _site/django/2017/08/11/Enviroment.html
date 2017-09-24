@@ -144,7 +144,7 @@
   
   
 </nav>
-    <p align='center'>
+    <p align='center' style="font-size: 14px">
       2017-09-24 &copy; DoSun
     </p>
 </div>
@@ -175,7 +175,7 @@
 </blockquote>
 
 <p>  下载得到anaconda的安装包,安装完成后打开cmd,输入<code class="highlighter-rouge">python</code>,回车,显示如下即python安装成功:<br />
-<img src="/assets/article_img/2017-08-11/python_test.png" alt="python安装测试" title="python测试截图" /><br />
+<img src="http://ows0v592v.bkt.clouddn.com/python_test.png" alt="python安装测试" title="python测试截图" /><br />
 (我自己用的是3.5.2版本)</p>
 
 <h3 id="2pycharm安装">2.Pycharm安装:</h3>
@@ -204,7 +204,7 @@
   <code class="highlighter-rouge">conda create -n 你的虚拟环境名 python=3.5</code><br />
   (例如我的虚拟环境名字叫django-learning就输入<code class="highlighter-rouge">conda create -n django-learning python=3.5</code>)<br />
   接着它会问你<code class="highlighter-rouge">Proceed ([y]/n)?</code>输入y回车确认就可以了.这样就创建了一个干净的python虚拟环境.然后使用<code class="highlighter-rouge">activate 你的虚拟环境名</code>来激活,可以看到类似如下显示:<br />
-<img src="/assets/article_img/2017-08-11/env.jpg" alt="进入虚拟环境" title="进入虚拟环境" /><br />
+<img src="http://ows0v592v.bkt.clouddn.com/env.jpg" alt="进入虚拟环境" title="进入虚拟环境" /><br />
   成功进入虚拟环境后就可以通过pip安装Django了(pip也是python的一个包管理工具),直接输入:<br />
   <code class="highlighter-rouge">pip install Django</code>(若要指定Django的版本则输入<code class="highlighter-rouge">pip install Django==1.9.8</code>即可安装1.9.8版本的Django)<br />
   对了,还要安装<a href="https://pypi.python.org/pypi/mysqlclient" title="mysqlclient">mysqlclient</a>,用来驱动mysql可以被python调用,原先常用的是<a href="http://mysql-python.sourceforge.net/MySQLdb.html" title="mysqldb">mysqldb</a>,但截止到目前(17年8月)mysqldb还不支持python3.5,所以只能用mysqlclient了.同样用pip安装(在同一个虚拟环境下):<br />

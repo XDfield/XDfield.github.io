@@ -9,13 +9,13 @@ html,body {
     padding: 0
 }
 
-@font-face{
+/* @font-face{
     font-family: "YaHei Consolas";
     src: url('fonts/YaHei.Consolas.1.12.ttf');
-}
+} */
 
 html {
-    font-family: "YaHei Consolas","Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",Arial,sans-serif;
+    font-family: "Microsoft YaHei","Segoe UI",Arial,sans-serif;
     font-size: 1rem;
     line-height: 1.5
 }
@@ -519,7 +519,7 @@ pre {
 body {
     color: rgba(255,255,255,0.75);
     background-color: #202020;
-    background-image: url('/assets/images/bg.gif');
+    /* background-image: url('/assets/images/bg.gif'); */
     display: flex;
     flex-direction: column;
     min-width: 100vw;
@@ -532,7 +532,7 @@ body {
 }
 
 #sidebar .site-title {
-    font-family: "Abril Fatface", serif;
+    font-family: cursive, serif;
     font-weight: normal;
     font-size: 10px;
     color: rgba(255,255,255,0.75);
@@ -1029,7 +1029,7 @@ width: 70%;
 
 .post .post-content .post-date,
 .post .post-content .post-words {
-font-size: 12px;
+font-size: 14px;
 }
 
 .post .post-content .post-title {
