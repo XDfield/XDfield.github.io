@@ -1,7 +1,9 @@
 encoding: utf-8
-author: "DoSun"
+author: DoSun
+title: DoSun's Blog
 date_format: '%Y-%m-%d'
 icon: "/assets/images/icon.ico"
+description: 没事写写东西,记点笔记
 
 defaults:
   -
@@ -12,4 +14,10 @@ defaults:
       layout: "default"
       type: "post"
  
-# theme: jekyll-theme-midnight
+sidebar_home_link: true
+
+github:
+  profile: https://github.com/XDfield
+
+email: chenxuan958864951@qq.com
+steam: http://steamcommunity.com/id/XDfield/

@@ -1,0 +1,29 @@
+<head>
+  {% comment %} <link href="http://gmpg.org/xfn/11" rel="profile" /> {% endcomment %}
+  {% comment %} <meta http-equiv="X-UA-Compatible" content="IE=edge" /> {% endcomment %}
+  {% comment %} <meta http-equiv="content-type" content="text/html; charset=utf-8" /> {% endcomment %}
+
+  <!-- Enable responsiveness on mobile devices-->
+  {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" /> {% endcomment %}
+
+  <title>
+    {% if page.title == "Home" %}
+      {{ site.title }}{% if site.tagline %} &middot; {{ site.tagline }}{% endif %}
+    {% else %}
+      {{ page.title }} &middot; {{ site.title }}
+    {% endif %}
+  </title>
+
+  {% comment %} {% include google-analytics.html %} {% endcomment %}
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css" />
+  {% comment %} {% include font-includes.html %} {% endcomment %}
+
+  <link rel="shortcut icon" href="{{ site.icon }}">
+
+  <!-- RSS -->
+  {% comment %} <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" /> {% endcomment %}
+
+  {% comment %} {% include custom-head.html %} {% endcomment %}
+</head>
