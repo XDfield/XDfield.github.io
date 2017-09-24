@@ -1,6 +1,7 @@
 ---
 title: 从一个表单例子引出Django
 category: Django
+img: django.jpg
 ---  
 {% raw %}  
 &emsp;&emsp;这次我们从一个表单的例子引入Django的大致开发过程.其中主要涉及到表单与数据库之间的数据存取.  

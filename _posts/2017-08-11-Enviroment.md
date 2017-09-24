@@ -1,6 +1,7 @@
 ---
 title: Django开发环境搭建
 category: Django
+img: django.jpg
 ---
 ## 使用的软件:  
 * 环境: Windows 10
