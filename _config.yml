@@ -16,6 +16,9 @@ defaults:
  
 sidebar_home_link: true
 
+google_analytics: UA-106863689-1
+uyan_id: 2145318
+
 github:
   profile: https://github.com/XDfield
 
