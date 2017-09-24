@@ -1,6 +1,6 @@
 <div id="sidebar">
     <div id='cover-author-image' align='center'>
-      <img src="{{ '/assets/images/DoSun.jpg' }}" alt="{{ site.author }}">
+      <img src="{{ site.img.link | append: 'DoSun.jpg' }}" alt="{{ site.author }}">
     </div>
     <header>
       <{% if page.layout == "index" %}h1{% else %}div{% endif %} class="site-title">
