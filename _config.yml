@@ -11,8 +11,8 @@ defaults:
       path: ""
       type: "posts"
     values:
-      layout: "default"
-      type: "post"
+      layout: posts
+      type: post
  
 sidebar_home_link: true
 
