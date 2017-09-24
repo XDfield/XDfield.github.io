@@ -20,8 +20,8 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/main.css" />
-  
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/a8343af6c0.css">
+  <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
   <link rel="shortcut icon" href="/assets/images/icon.ico">
 
   <!-- RSS -->
@@ -254,5 +254,21 @@ HTTP的主要特点:
     </main>
 
     
+
+    <div id="actGotop" class="fa fa-angle-up" style="display: none;"></div>
+    <script type="text/javascript">
+      // 回到顶部功能
+      $('.container').scroll(function(){
+        if($('.container').scrollTop() >= 1000){
+          $('#actGotop').fadeIn(300);
+        }else{
+          $('#actGotop').fadeOut(300);
+        }
+      });
+      $('#actGotop').click(function(){
+        $('.container').animate({scrollTop: '0px'}, 800);
+        console.log('click')
+      });
+    </script>
   </body>
 </html>
