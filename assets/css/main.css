@@ -534,7 +534,7 @@ body {
 #sidebar .site-title {
     font-family: cursive, serif;
     font-weight: normal;
-    font-size: 10px;
+    font-size: 40px;
     color: rgba(255,255,255,0.75);
     margin-top: 0;
     margin-bottom: .5rem
@@ -553,6 +553,7 @@ body {
 }
 
 .container {
+    background-color: #f6f4ec;
     flex: 1 1 auto;
     display: flex;
     flex-direction: column
@@ -655,7 +656,7 @@ body {
     .container {
         background: #f6f4ec;
         color: #515151;
-        padding: 4rem;
+        padding: 2rem;
         height: 100vh
     }
 
@@ -973,8 +974,38 @@ button.disqus-load {
 
 #cover-author-image img{
     border-radius: 50%;
-    width: 70%;
+    width: 12rem;
 }
+
+.clearfix::before, .clearfix::after {
+    content: "";
+    display: table;
+}
+  
+.clearfix::after {
+clear: both;
+}
+
+.content-box {
+    /* padding: 20px; */
+    /* padding-left: 260px; */
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+  }
 
 .post {
     background-color: white;
@@ -994,7 +1025,7 @@ button.disqus-load {
     -webkit-align-items: stretch;
         -ms-flex-align: stretch;
             align-items: stretch;
-    min-height: 11rem;
+    min-height: 180px;
     -webkit-border-radius: 10px;
             border-radius: 10px;
     overflow: hidden;
@@ -1016,15 +1047,15 @@ button.disqus-load {
 .post .post-thumbnail {
 width: 40%;
 max-width: 100%;
-min-height: 11rem;
+min-height: 30%;
 -webkit-background-size: cover;
         background-size: cover;
 background-position: 50% 50%;
 }
 
 .post .post-content {
-padding: 1rem;
-width: 70%;
+padding: 16px;
+width: 60%;
 }
 
 .post .post-content .post-date,
@@ -1066,3 +1097,82 @@ font-size: 18px;
    box-shadow: 0 1px 3px rgba(0,0,0,.2);
    opacity: 0.8;
 }
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 1080px) {
+    .post {
+      width: 48%;
+      max-width: 100%;
+      margin: 0 0.9% 1.5%;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+    }
+    .post .post-thumbnail {
+      width: 100%;
+    }
+    .post .post-content {
+      width: 100%;
+    }
+    .post .post-content .post-title {
+      margin: 0 0 5px;
+    }
+    .post .post-content .post-title a {
+      font-size: 21px;
+    }
+  }
+
+  /* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+    .content-box {
+      padding: 10px;
+    }
+    .post {
+      width: 98%;
+      max-width: 100%;
+      margin: 2%;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+    }
+    .post .post-thumbnail {
+      width: 100%;
+    }
+    .post .post-content {
+      width: 100%;
+    }
+    .post .post-content .post-title {
+      margin: 0 0 5px;
+    }
+    .post .post-content .post-title a {
+      font-size: 21px;
+    }
+  }
+
+  /* Small Devices, Tablets */
+@media only screen and (max-width: 768px) {
+    .content-box {
+      padding: 20px 10px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      -webkit-box-align: stretch;
+      -webkit-align-items: stretch;
+          -ms-flex-align: stretch;
+              align-items: stretch;
+    }
+
+  }
