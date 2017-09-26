@@ -566,7 +566,7 @@ body {
 .content {
     /* background: #fff; */
     color: #515151;
-    padding: 2rem
+    padding: 4rem
 }
 
 #sidebar header ~ *,#sidebar header ~ nav,#sidebar p.lead {
@@ -651,13 +651,6 @@ body {
 
     .index #sidebar {
         margin-bottom: 0;
-    }
-
-    .container {
-        background: #f6f4ec;
-        color: #515151;
-        padding: 2rem;
-        height: 100vh
     }
 
     .container>header {
@@ -1047,7 +1040,7 @@ clear: both;
 .post .post-thumbnail {
 width: 40%;
 max-width: 100%;
-min-height: 30%;
+min-height: 4rem;
 -webkit-background-size: cover;
         background-size: cover;
 background-position: 50% 50%;
@@ -1124,6 +1117,30 @@ font-size: 18px;
     }
   }
 
+    /* Small Devices, Tablets */
+@media only screen and (max-width: 768px) {
+    .content-box {
+      padding: 20px 10px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      -webkit-box-align: stretch;
+      -webkit-align-items: stretch;
+          -ms-flex-align: stretch;
+              align-items: stretch;
+    }
+
+  }
+
   /* Extra Small Devices, Phones */
 @media only screen and (max-width: 480px) {
     .content-box {
@@ -1153,26 +1170,3 @@ font-size: 18px;
     }
   }
 
-  /* Small Devices, Tablets */
-@media only screen and (max-width: 768px) {
-    .content-box {
-      padding: 20px 10px;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: row;
-          -ms-flex-direction: row;
-              flex-direction: row;
-      -webkit-flex-wrap: wrap;
-          -ms-flex-wrap: wrap;
-              flex-wrap: wrap;
-      -webkit-box-align: stretch;
-      -webkit-align-items: stretch;
-          -ms-flex-align: stretch;
-              align-items: stretch;
-    }
-
-  }
