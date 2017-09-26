@@ -242,7 +242,7 @@ JSON Lines格式十分好用,他是一种数据流的形式,你可以很方便�
 要爬取下一页内容,首先就要找到'下一页'的链接.还是看我们这个例子,可以看到在页面中有这样一段标明了下一页的链接:  
 ```html
 <ul class='pager'>
-    <li class'next'>
+    <li class='next'>
         <a href='/page/2/'>Next <span aria-hidden='true'>&rarr;</span></a>
     </li>
 </ul>

@@ -20,7 +20,7 @@ html {
     line-height: 1.5
 }
 
-@media (min-width: 49rem) {
+@media (min-width: 768px) {
     html {
         font-size:1.25rem
     }
@@ -556,7 +556,10 @@ body {
     background-color: #f6f4ec;
     flex: 1 1 auto;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    padding: 4rem;
+    color: #515151;
+    height: 100vh;
 }
 
 .container>.content {
@@ -608,7 +611,7 @@ body {
     margin-bottom: 0.5rem
 }
 
-@media (min-width: 49rem) {
+@media (min-width: 768px) {
     body {
         flex-direction:row;
         height: 100vh;
@@ -711,7 +714,7 @@ body {
     margin-top: 1rem
 }
 
-@media (min-width: 49rem) {
+@media (min-width: 768px) {
     #sidebar-icon-links {
         margin-left:-0.25em;
         justify-content: flex-start
@@ -729,7 +732,7 @@ body {
     margin: 0 0.25em
 }
 
-@media (min-width: 49rem) {
+@media (min-width: 768px) {
     body {
         align-items:flex-end;
     }
@@ -875,7 +878,7 @@ button.disqus-load {
     padding-bottom: 2rem;
 }
 
-@media (min-width: 49rem) {
+@media (min-width: 768px) {
     .pagination>a {
         box-shadow:none
     }
@@ -1114,6 +1117,11 @@ font-size: 18px;
     }
     .post .post-content .post-title a {
       font-size: 21px;
+    }
+
+    .container{
+        padding: 2rem;
+        height: 100%;
     }
   }
 
